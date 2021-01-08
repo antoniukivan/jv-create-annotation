@@ -4,9 +4,9 @@ public class User {
     private String name;
     private int age;
 
-    public User(String name, int id) {
+    public User(String name, int age) {
         this.name = name;
-        this.age = id;
+        this.age = age;
     }
 
     public String getName() {
@@ -29,7 +29,7 @@ public class User {
     public String toString() {
         return "User{"
                 + "name = '" + name + '\''
-                + ", id = " + age
+                + ", age = " + age
                 + '}';
     }
 }
