@@ -1,35 +1,35 @@
 package core.basesyntax.model;
 
 public class User {
-    private String login;
-    private int id;
+    private String name;
+    private int age;
 
     public User(String login, int id) {
-        this.login = login;
-        this.id = id;
+        this.name = login;
+        this.age = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getName() {
+        return name;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public int getAge() {
+        return age;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
     public String toString() {
         return "User{"
-                + "login='" + login + '\''
-                + ", id=" + id
+                + "login='" + name + '\''
+                + ", id=" + age
                 + '}';
     }
 }
