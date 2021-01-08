@@ -4,8 +4,8 @@ public class User {
     private String name;
     private int age;
 
-    public User(String login, int id) {
-        this.name = login;
+    public User(String name, int id) {
+        this.name = name;
         this.age = id;
     }
 
@@ -28,8 +28,8 @@ public class User {
     @Override
     public String toString() {
         return "User{"
-                + "login='" + name + '\''
-                + ", id=" + age
+                + "name = '" + name + '\''
+                + ", id = " + age
                 + '}';
     }
 }
