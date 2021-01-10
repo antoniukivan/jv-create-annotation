@@ -2,7 +2,6 @@ package core.basesyntax;
 
 import core.basesyntax.controller.ConsoleHandler;
 import core.basesyntax.lib.Injector;
-
 import java.lang.reflect.InvocationTargetException;
 
 public class Main {

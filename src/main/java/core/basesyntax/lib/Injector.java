@@ -2,15 +2,15 @@ package core.basesyntax.lib;
 
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.UserDao;
+import core.basesyntax.exception.NoSuchDaoFoundException;
 import core.basesyntax.factory.BetDaoImplFactory;
 import core.basesyntax.factory.UserDaoImplFactory;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
-    public static Object getInstance(Class clazz) throws NoSuchMethodException, IllegalAccessException,
-            InvocationTargetException, InstantiationException {
-
+    public static Object getInstance(Class clazz) throws NoSuchMethodException,
+            IllegalAccessException, InvocationTargetException, InstantiationException {
         Object instance = clazz.getDeclaredConstructor().newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
         for (Field field : declaredFields) {
@@ -23,7 +23,7 @@ public class Injector {
                         field.set(instance, UserDaoImplFactory.getUserDao());
                     }
                 } else {
-                    throw new
+                    throw new NoSuchDaoFoundException("Invalid type: " + field.getType());
                 }
             }
         }
