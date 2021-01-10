@@ -21,7 +21,7 @@ public class Injector {
                     case BetDao.class:
                         field.set(instance, BetDaoImplFactory.getBetDao());
                     case UserDao.class:
-                        field.set(instance, );
+                        field.set(instance, UserDa);
                 }
             }
         }
