@@ -3,8 +3,7 @@ package core.basesyntax.lib;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.exception.NoSuchDaoFoundException;
-import core.basesyntax.factory.BetDaoImplFactory;
-import core.basesyntax.factory.UserDaoImplFactory;
+import core.basesyntax.factory.Factory;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
@@ -15,18 +14,18 @@ public class Injector {
         Object instance = clazz.getDeclaredConstructor().newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
         for (Field field : declaredFields) {
-            if (field.getAnnotation(Inject.class) != null) {
+            if (field.isAnnotationPresent(Inject.class)) {
                 Object value = null;
                 if (BetDao.class.equals(field.getType())) {
-                    value = BetDaoImplFactory.getBetDao();
+                    value = Factory.getBetDao();
                 } else if (UserDao.class.equals(field.getType())) {
-                    value = UserDaoImplFactory.getUserDao();
+                    value = Factory.getUserDao();
                 }
                 if (Objects.requireNonNull(value).getClass().isAnnotationPresent(Dao.class)) {
                     field.setAccessible(true);
                     field.set(instance, value);
                 } else {
-                    throw new NoSuchDaoFoundException("Invalid type: " + field.getType());
+                    throw new NoSuchDaoFoundException("Expected type must contain @Dao annotation");
                 }
             }
         }
